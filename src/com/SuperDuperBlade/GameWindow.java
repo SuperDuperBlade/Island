@@ -47,24 +47,20 @@ public class GameWindow extends JPanel implements Runnable {
 
         this.setPreferredSize(new Dimension(maxScreenX, maxScreenY));
         this.setDoubleBuffered(true);
-        this.setBackground(Color.gray);
         this.setFocusable(true);
         this.addKeyListener(keyManager);
         this.addMouseListener(mouseManager);
         this.setCursor(new Cursor(0));
-
-    }
-
-
-    public void startThread() {
         mainThread = new Thread(this);
-        mainThread.run();
     }
+
+
+
 
     @Override
     public void run() {
         sceneManager.changeScence(0);
-        startMultiThreads();
+        startRenderingThread();
     }
 
 
@@ -88,8 +84,8 @@ public class GameWindow extends JPanel implements Runnable {
 
 
 
-    // main thread of the game + Vsync
-     void startMultiThreads() {
+
+     void startRenderingThread() {
 
 
         double drawInterval = 1000000000 / FPSCAP;
