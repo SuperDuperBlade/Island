@@ -1,5 +1,6 @@
 package com.SuperDuperBlade.Managers;
 
+import com.SuperDuperBlade.Scene.MainMenu;
 import com.SuperDuperBlade.Scene.Scence;
 
 import java.awt.*;
@@ -7,7 +8,7 @@ import java.awt.event.MouseEvent;
 
 public class SceneManager {
     private Scence currentScene;
-    private int scenceNumber = 0;
+
 
 
     public void update() {currentScene.update();}
@@ -18,17 +19,15 @@ public class SceneManager {
 
 
     public void changeScence(int scence) {
-        this.scenceNumber = scence;
 
         switch (scence) {
             case 0:
-                //    sceneManager = new MainMenu();
+                 currentScene = new MainMenu();
                 break;
             case 1:
-                //    sceneManager = new Game();
                 break;
             default:
-                throw new RuntimeException("Invalid Scence");
+                throw new RuntimeException("Invalid Scene");
         }
 
     }

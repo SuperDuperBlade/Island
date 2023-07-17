@@ -14,7 +14,7 @@ public class GameWindow extends JPanel implements Runnable {
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     public int maxScreenY = screenSize.height / 2 + 32;
     public int maxScreenX = screenSize.width / 2;
-    private final SceneManager sceneManager = new SceneManager();
+    private static final SceneManager sceneManager = new SceneManager();
 
     private   GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
 
@@ -23,7 +23,6 @@ public class GameWindow extends JPanel implements Runnable {
     private int scale = 3;
 
 
-    protected Thread gameThread;
     public MouseManager mouseManager = new MouseManager();
 
 
