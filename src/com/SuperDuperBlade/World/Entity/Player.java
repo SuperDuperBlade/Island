@@ -63,9 +63,7 @@ public class Player extends Entity{
 
     }
 
-    public double calulateSpeedDif(double deltaTime){
-        return movementSpeed*(deltaTime/1000);
-    }
+
 
 
 }
