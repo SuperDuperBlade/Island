@@ -1,8 +1,12 @@
 package com.SuperDuperBlade.World.Entity;
 
-public class Entity {
-    private int health , movementSpeed;
-    private Position position;
+import java.awt.*;
+
+public abstract class Entity {
+    public int health ,
+        //pixels per second
+            movementSpeed;
+    public Position position;
 
     public Entity(int health, int movementSpeed, Position position) {
         this.health = health;
@@ -10,7 +14,12 @@ public class Entity {
         this.position = position;
     }
 
-    class Position {
+    public abstract void update(double delta);
+    public abstract void draw(Graphics2D g2, int posX,int posY);
+    public abstract void  onTick();
+
+
+    public static class Position {
     double posX, posY;
 
     public Position(double posX, double posY) {
@@ -33,6 +42,12 @@ public class Entity {
     public void setPosY(double posY) {
         this.posY = posY;
     }
+        public void addToPosY(double add) {
+            this.posY += add;
+        }
+        public void addToPosX(double add) {
+            this.posY += add;
+        }
 }
 }
 
