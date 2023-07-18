@@ -4,7 +4,13 @@ public class Entity {
     private int health , movementSpeed;
     private Position position;
 
-class Position {
+    public Entity(int health, int movementSpeed, Position position) {
+        this.health = health;
+        this.movementSpeed = movementSpeed;
+        this.position = position;
+    }
+
+    class Position {
     double posX, posY;
 
     public Position(double posX, double posY) {
