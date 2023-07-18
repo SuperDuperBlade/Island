@@ -9,18 +9,20 @@ import javax.swing.*;
 import java.awt.*;
 
 
-
+@SuppressWarnings("all")
 public class GameWindow extends JPanel implements Runnable {
-    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    public int maxScreenY = screenSize.height / 2 + 32;
-    public int maxScreenX = screenSize.width / 2;
+    private   Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    private int screenSizeY = screenSize.height / 2 + 32;
+    private int screenSizeX = screenSize.width / 2;
     private static final SceneManager sceneManager = new SceneManager();
 
     private   GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
 
     //TODO Add a option to disable VSYNC
-    final int FPSCAP = env.getDefaultScreenDevice().getDisplayMode().getRefreshRate();
+    private int FPSCAP = env.getDefaultScreenDevice().getDisplayMode().getRefreshRate();
     private int scale = 3;
+    private int tileSize = 16;
+    private int tileScaled = scale * tileSize;
 
 
     public MouseManager mouseManager = new MouseManager();
@@ -43,17 +45,15 @@ public class GameWindow extends JPanel implements Runnable {
 
     public GameWindow() {
 
-        //modifications to the window
-
-        this.setPreferredSize(new Dimension(maxScreenX, maxScreenY));
+        //configurations to the window
+        this.setPreferredSize(new Dimension(screenSizeX, screenSizeY));
         this.setDoubleBuffered(true);
         this.setFocusable(true);
         this.addKeyListener(keyManager);
         this.addMouseListener(mouseManager);
-        this.setCursor(new Cursor(0));
+        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         mainThread = new Thread(this);
     }
-
 
 
 
@@ -66,9 +66,8 @@ public class GameWindow extends JPanel implements Runnable {
 
     public void update(double delta) {
         sceneManager.update();
-        this.maxScreenX = this.getWidth();
-        this.maxScreenY = this.getHeight();
-
+        this.screenSizeX = this.getWidth();
+        this.screenSizeY = this.getHeight();
     }
 
 
@@ -80,9 +79,6 @@ public class GameWindow extends JPanel implements Runnable {
 
         sceneManager.draw(g2);
     }
-
-
-
 
 
      void startRenderingThread() {
@@ -105,7 +101,7 @@ public class GameWindow extends JPanel implements Runnable {
                     remainingTime = 0;
                 }
                 if (System.nanoTime() >= fps) {
-                    System.out.println("FPS: " + times);
+                    Main.debug("FPS: " + times);
                     times = 0;
                     fps += 1000000000;
                 }
@@ -129,4 +125,31 @@ public class GameWindow extends JPanel implements Runnable {
         return this.keyManager;
     }
 
+    public Dimension getScreenSize() {
+        return screenSize;
+    }
+
+    public int getScreenSizeY() {
+        return screenSizeY;
+    }
+
+    public int getScreenSizeX() {
+        return screenSizeX;
+    }
+
+    public GraphicsEnvironment getEnv() {
+        return env;
+    }
+
+    public int getFPSCAP() {
+        return FPSCAP;
+    }
+
+    public int getTileScaled() {
+        return tileScaled;
+    }
+
+    public MouseManager getMouseManager() {
+        return mouseManager;
+    }
 }

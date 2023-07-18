@@ -9,7 +9,7 @@ public class Main {
          JFrame  window = new JFrame();
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         window.setResizable(true);
-        window.setTitle("Simulation");
+        window.setTitle("Island");
 
         gWindow = new GameWindow();
         window.add(gWindow);
@@ -22,6 +22,9 @@ public class Main {
 
     public static GameWindow getWindow(){
         return gWindow;
+    }
+    public static void debug(String text){
+        System.out.println("DEBUG: "+text);
     }
 
 

@@ -6,6 +6,8 @@ import java.awt.event.KeyListener;
 
 public  class KeyManager implements KeyListener {
 
+
+    //If you have more keys on your keyboard than this...
     public boolean[] keyPressed = new boolean[300];
     public String message = "";
 
