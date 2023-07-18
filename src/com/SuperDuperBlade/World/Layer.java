@@ -6,6 +6,7 @@ import java.io.*;
 import java.util.Arrays;
 
 
+
 public class Layer {
 
     private File mapDataLocation;
@@ -43,13 +44,14 @@ public class Layer {
 
     }
     //Gets the number of lines in a file
-    private int getLinesInFile(File file){
-        try (LineNumberReader lineNumberReader = new LineNumberReader(new FileReader(file))) {
-           lineNumberReader.skip(Long.MAX_VALUE);
-         return   lineNumberReader.getLineNumber()+1;
+    private int getLinesInFile(File file) {
+        int counter  = 0;
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            while (reader.readLine() != null) counter++;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        return counter;
     }
 
 
