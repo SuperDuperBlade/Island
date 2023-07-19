@@ -6,6 +6,8 @@ import java.awt.event.MouseEvent;
 
 public abstract class Scence {
 
+    public boolean paused = false;
+
 
     public abstract void update(double delta);
     public abstract void draw(Graphics2D g2);

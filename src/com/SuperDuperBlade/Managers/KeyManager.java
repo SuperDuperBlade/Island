@@ -54,6 +54,9 @@ public  class KeyManager implements KeyListener {
     public boolean isKeyPressed(int key){
         return keyPressed[key];
     }
+    public String getMessage() {
+        return this.message;
+    }
 
     public boolean isKeyTyped(int keycode){
         boolean typed =   this.keyTyped[keycode];
@@ -61,5 +64,10 @@ public  class KeyManager implements KeyListener {
         this.keyTyped[keycode] = false;
         return typed;
     }
+
+    public void resetMessage(){
+        this.message = "";
+    }
+
 
 }

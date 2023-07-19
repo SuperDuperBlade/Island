@@ -37,4 +37,8 @@ public class SceneManager {
         }
 
     }
+    public Scence getScence(){
+        return currentScene;
+    }
+
 }

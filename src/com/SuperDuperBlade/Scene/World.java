@@ -33,6 +33,7 @@ public class World extends Scence {
 
     @Override
     public void update(double delta) {
+        if (paused) return;
 
          for (Entity e: entities){
              e.update(delta);
@@ -79,6 +80,7 @@ public class World extends Scence {
 
     @Override
     public void onTick(){
+        if (paused) return;
 
     }
 }
