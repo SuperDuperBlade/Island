@@ -26,6 +26,26 @@ public abstract class Entity {
     public double calulateSpeedDif(double deltaTime){
         return movementSpeed*(deltaTime/1000);
     }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public void setMovementSpeed(int movementSpeed) {
+        this.movementSpeed = movementSpeed;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
 }
 
 

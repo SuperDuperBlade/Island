@@ -17,7 +17,7 @@ public class SceneManager {
         if (currentScene!=null) currentScene.draw(g2);
     }
     public void onTick(){
-        currentScene.onTIck();
+        currentScene.onTick();
     }
     public void onEventMouse(MouseEvent e){currentScene.onEventMouse(e);}
 

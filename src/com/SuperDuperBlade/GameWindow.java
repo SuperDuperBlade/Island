@@ -20,7 +20,7 @@ public class GameWindow extends JPanel implements Runnable {
 
     //TODO Add a option to disable VSYNC
     private int FPSCAP = env.getDefaultScreenDevice().getDisplayMode().getRefreshRate();
-    private int scale = 3;
+    private int scale = 4;
     private int tileSize = 16;
     private int tileScaled = scale * tileSize;
     private byte TPS = 20;
@@ -35,7 +35,7 @@ public class GameWindow extends JPanel implements Runnable {
 
 
     public GameWindow() {
-
+        System.out.println(screenSizeX);
         //configurations to the window
         this.setPreferredSize(new Dimension(screenSizeX, screenSizeY));
         this.setDoubleBuffered(true);
@@ -60,7 +60,7 @@ public class GameWindow extends JPanel implements Runnable {
 
 
     public void update(double delta) {
-        sceneManager.update();
+        sceneManager.update(delta);
         this.screenSizeX = this.getWidth();
         this.screenSizeY = this.getHeight();
     }
@@ -73,6 +73,7 @@ public class GameWindow extends JPanel implements Runnable {
         g2.setBackground(Color.CYAN);
 
         sceneManager.draw(g2);
+        g2.dispose();
     }
 
 

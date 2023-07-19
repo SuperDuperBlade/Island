@@ -27,11 +27,11 @@ public class Layer {
         int tilescale = Main.getWindow().getTileScaled();
 
 
-        for (int i = 0; i <camera.getMaxTilesY();i++){
+        for (int i = 0; i <camera.getTilesToRenderY(); i++){
 
             int posYOnScreen = (i*tilescale)-camera.getOffsetY();
             int posY = i + camera.getRenderPosStartY();
-            for (int j = 0; j < camera.getMaxTilesX(); j++) {
+            for (int j = 0; j < camera.getTilesToRenderX(); j++) {
                 try {
                     g2.drawImage(tilemap[posY][j + camera.getRenderPosStartX()].getImage(), (j * tilescale) - camera.getOffsetX(), posYOnScreen, null);
                 }catch (ArrayIndexOutOfBoundsException e) {}

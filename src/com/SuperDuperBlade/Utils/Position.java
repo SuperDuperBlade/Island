@@ -38,4 +38,12 @@ public class Position {
     public int convertToWorldPosY(){
         return (int) (posY/ Main.getWindow().getTileScaled());
     }
+
+    public int offsetX(){
+        return (int) (posX%Main.getWindow().getTileScaled());
+    }
+    public int offsetY(){
+        return (int) (posY%Main.getWindow().getTileScaled());
+    }
+
 }

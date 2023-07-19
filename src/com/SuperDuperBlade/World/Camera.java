@@ -14,7 +14,7 @@ public class Camera {
     private Entity selectedEntity;
     private final int[] cameraInfo = new int[9];
     private int cashedScreenSizeY = 0, cashedScreenSizeX = 0;
-    private int halfTilesY , halfTilesX , offsetX, offsetY , renderPosStartX , renderPosStartY ,maxTilesX , maxTilesY;
+    private int halfTilesY , halfTilesX , offsetX, offsetY , renderPosStartX , renderPosStartY , tilesToRenderX, tilesToRenderY , endRenderPosX , endRenderPosY;
 
 
     public Camera(Entity entity) {
@@ -26,22 +26,25 @@ public class Camera {
         GameWindow gw = Main.getWindow();
 
         if (cashedScreenSizeX != gw.getScreenSizeX()||cashedScreenSizeY !=gw.getScreenSizeY()) {
-            halfTilesX = (gw.getScreenSizeX() / gw.getTileScaled()) / 2; //The tiles that the camera would subtract  from the entity's postition so that the player would end up in the middle of the screen on the X axis
-            halfTilesY = (gw.getScreenSizeY() / gw.getTileScaled()) / 2; //The tiles that the camera would subtract  from the entity's postition so that the player would end up in the middle of the screen on the Y axis
+            halfTilesX = (gw.getScreenSizeX() / gw.getTileScaled()) / 2; //The tiles that the camera would subtract  from the entity's position so that the player would end up in the middle of the screen on the X axis
+            halfTilesY = (gw.getScreenSizeY() / gw.getTileScaled()) / 2; //The tiles that the camera would subtract  from the entity's position so that the player would end up in the middle of the screen on the Y axis
             cashedScreenSizeY = halfTilesY;
             cashedScreenSizeX = halfTilesX;
         }
 
 
-        offsetX = (int) (position.getPosX()%gw.getTileScaled()); //offset on the X axis
-        offsetY = (int) (position.getPosY()%gw.getTileScaled()); //offset on the Y axis
-        System.out.println(offsetX);
+        offsetX = position.offsetX(); //offset on the X axis
+        offsetY = position.offsetY(); //offset on the Y axis
+
 
         this.renderPosStartX = position.convertToWorldPosX() - halfTilesX;
         this.renderPosStartY = position.convertToWorldPosY() - halfTilesY;
 
-        this.maxTilesX = (halfTilesX*2)+2;
-        this.maxTilesY = (halfTilesY*2)+3;
+        this.tilesToRenderX = (halfTilesX*2)+3;
+        this.tilesToRenderY = (halfTilesY*2)+3;
+
+        this.endRenderPosX = renderPosStartX + tilesToRenderX;
+        this.endRenderPosY = renderPosStartY + tilesToRenderY;
     }
 
     public Position getPosition() {
@@ -87,12 +90,28 @@ public class Camera {
         return renderPosStartY;
     }
 
-    public int getMaxTilesX() {
-        return maxTilesX;
+    public int getTilesToRenderX() {
+        return tilesToRenderX;
     }
 
-    public int getMaxTilesY() {
-        return maxTilesY;
+    public int getTilesToRenderY() {
+        return tilesToRenderY;
+    }
+
+    public int getEndRenderPosX() {
+        return endRenderPosX;
+    }
+
+    public void setEndRenderPosX(int endRenderPosX) {
+        this.endRenderPosX = endRenderPosX;
+    }
+
+    public int getEndRenderPosY() {
+        return endRenderPosY;
+    }
+
+    public void setEndRenderPosY(int endRenderPosY) {
+        this.endRenderPosY = endRenderPosY;
     }
 
     public void setPosition(Position position) {
@@ -135,11 +154,11 @@ public class Camera {
         this.renderPosStartY = renderPosStartY;
     }
 
-    public void setMaxTilesX(int maxTilesX) {
-        this.maxTilesX = maxTilesX;
+    public void setTilesToRenderX(int tilesToRenderX) {
+        this.tilesToRenderX = tilesToRenderX;
     }
 
-    public void setMaxTilesY(int maxTilesY) {
-        this.maxTilesY = maxTilesY;
+    public void setTilesToRenderY(int tilesToRenderY) {
+        this.tilesToRenderY = tilesToRenderY;
     }
 }
