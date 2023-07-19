@@ -23,6 +23,7 @@ public class GameWindow extends JPanel implements Runnable {
     private int scale = 3;
     private int tileSize = 16;
     private int tileScaled = scale * tileSize;
+    private byte TPS = 20;
 
 
     public MouseManager mouseManager = new MouseManager();
@@ -31,17 +32,7 @@ public class GameWindow extends JPanel implements Runnable {
     Thread mainThread;
     private KeyManager keyManager = new KeyManager();
 
-    public SceneManager getSceneManager() {
-        return sceneManager;
-    }
 
-    public int getScale() {
-        return scale;
-    }
-
-    public void setScale(int scale) {
-        this.scale = scale;
-    }
 
     public GameWindow() {
 
@@ -60,7 +51,11 @@ public class GameWindow extends JPanel implements Runnable {
     @Override
     public void run() {
         sceneManager.changeScence(0);
+        new Thread(()->{
+            startTickThread();
+        }).start();
         startRenderingThread();
+
     }
 
 
@@ -81,7 +76,45 @@ public class GameWindow extends JPanel implements Runnable {
     }
 
 
-     void startRenderingThread() {
+
+    private void startTickThread(){
+
+        double drawInterval = 1000000000 / TPS;
+        double nextDrawTime = System.nanoTime() + drawInterval;
+        double lastTime = System.currentTimeMillis();
+
+
+
+        double fps = System.nanoTime() + 1000000000;
+        int times = 0;
+        while (mainThread != null) {
+
+            try {
+                double remainingTime = (nextDrawTime - System.nanoTime());
+                remainingTime = remainingTime / 1000000;
+                if (remainingTime < 0) {
+                    remainingTime = 0;
+                }
+                if (System.nanoTime() >= fps) {
+                    Main.debug("TPS: " + times);
+                    times = 0;
+                    fps += 1000000000;
+                }
+                Thread.sleep((long) remainingTime);
+                sceneManager.onTick();
+
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+            lastTime = System.currentTimeMillis();
+            nextDrawTime += drawInterval;
+            times++;
+        }
+
+    }
+
+    protected void startRenderingThread() {
 
 
         double drawInterval = 1000000000 / FPSCAP;
@@ -151,5 +184,16 @@ public class GameWindow extends JPanel implements Runnable {
 
     public MouseManager getMouseManager() {
         return mouseManager;
+    }
+    public SceneManager getSceneManager() {
+        return sceneManager;
+    }
+
+    public int getScale() {
+        return scale;
+    }
+
+    public void setScale(int scale) {
+        this.scale = scale;
     }
 }

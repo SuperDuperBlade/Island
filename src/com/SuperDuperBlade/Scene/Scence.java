@@ -11,5 +11,9 @@ public abstract class Scence {
     public abstract void draw(Graphics2D g2);
     public  void onEventMouse(MouseEvent e){}
 
+    public void onTIck(){
+
+    }
+
 
 }

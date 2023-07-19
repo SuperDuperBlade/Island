@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
 
 public class Player extends Entity{
     private final KeyManager keyManager;
-    String playerImagePath = "Entities/Player/player";
+    String playerImagePath = "/Res/Entities/Player/player";
     private final BufferedImage
             playerUp = Util.getImageFromSource(playerImagePath+"Up.png"),
             playerDown = Util.getImageFromSource(playerImagePath+"Down.png"),
