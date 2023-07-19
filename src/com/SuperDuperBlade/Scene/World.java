@@ -1,6 +1,8 @@
 package com.SuperDuperBlade.Scene;
 
 import com.SuperDuperBlade.Main;
+import com.SuperDuperBlade.Scene.GUI.Command;
+import com.SuperDuperBlade.Scene.GUI.Gui;
 import com.SuperDuperBlade.Utils.Position;
 import com.SuperDuperBlade.World.Camera;
 import com.SuperDuperBlade.World.Entity.Entity;
@@ -15,6 +17,7 @@ import java.util.ArrayList;
 public class World extends Scence {
     private ArrayList<Layer> layers = new ArrayList<>();
     private ArrayList<Entity> entities = new ArrayList<>();
+    private ArrayList<Gui> guis = new ArrayList<>();
     private Camera camera;
     private Player player = new Player(100,500, new Position(1,1));
 
@@ -24,6 +27,7 @@ public class World extends Scence {
         entities.add(new NPC(1,1,new Position(20,2)));
         entities.add(new NPC(1,1,new Position(20,20)));
         entities.add(new NPC(1,1,new Position(20,27)));
+        guis.add(new Command());
         camera = new Camera(player);
     }
 
@@ -65,6 +69,12 @@ public class World extends Scence {
                 }
             }
         }
+
+
+        for (Gui gui:guis) {
+            gui.draw(g2);
+        }
+
     }
 
     @Override
