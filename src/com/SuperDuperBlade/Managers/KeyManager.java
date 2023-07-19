@@ -8,7 +8,7 @@ public  class KeyManager implements KeyListener {
 
 
     //If you have more keys on your keyboard than this...
-    public boolean[] keyPressed = new boolean[300];
+    public boolean[] keyPressed = new boolean[400];
     public String message = "";
 
 
@@ -18,7 +18,6 @@ public  class KeyManager implements KeyListener {
         switch (keyCode) {
             case KeyEvent.VK_ENTER:
                 this.message = "";
-                System.out.println("here");
                 break;
             case KeyEvent.VK_BACK_SPACE:
                 this.message = removeLastChar(message);
@@ -30,7 +29,7 @@ public  class KeyManager implements KeyListener {
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {
+    public void keyPressed(KeyEvent e){
         keyPressed[e.getKeyCode()] = true;
     }
 

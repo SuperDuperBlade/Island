@@ -43,6 +43,7 @@ public class GameWindow extends JPanel implements Runnable {
         this.addKeyListener(keyManager);
         this.addMouseListener(mouseManager);
         this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        this.setFocusTraversalKeysEnabled(false);
         mainThread = new Thread(this);
     }
 
