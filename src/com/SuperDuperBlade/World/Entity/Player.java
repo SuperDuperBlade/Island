@@ -2,6 +2,7 @@ package com.SuperDuperBlade.World.Entity;
 
 import com.SuperDuperBlade.Main;
 import com.SuperDuperBlade.Managers.KeyManager;
+import com.SuperDuperBlade.Utils.Position;
 import com.SuperDuperBlade.Utils.Util;
 
 import java.awt.*;
@@ -26,6 +27,8 @@ public class Player extends Entity{
         super(health, movementSpeed, position);
         this.keyManager = Main.getWindow().getKeyManager();
     }
+
+
 
 
     //TODO add images for the player going diagonally
