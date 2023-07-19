@@ -1,5 +1,6 @@
 package com.SuperDuperBlade.World.Entity;
 
+import com.SuperDuperBlade.Main;
 import com.SuperDuperBlade.Utils.Position;
 
 import java.awt.*;
@@ -12,7 +13,7 @@ public abstract class Entity {
     public Entity(int health, int movementSpeed, Position position) {
         this.health = health;
         this.movementSpeed = movementSpeed;
-        this.position = position;
+        this.position = new Position(position.getPosX() * Main.getWindow().getTileScaled(),position.getPosY() * Main.getWindow().getTileScaled());
     }
 
     public abstract void update(double delta);

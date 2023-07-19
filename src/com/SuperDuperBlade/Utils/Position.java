@@ -1,5 +1,7 @@
 package com.SuperDuperBlade.Utils;
 
+import com.SuperDuperBlade.Main;
+
 public class Position {
     double posX, posY;
 
@@ -28,5 +30,12 @@ public class Position {
     }
     public void addToPosX(double add) {
         this.posY += add;
+    }
+
+    public int convertToWorldPosX(){
+        return (int) (posX/ Main.getWindow().getTileScaled());
+    }
+    public int convertToWorldPosY(){
+        return (int) (posX/ Main.getWindow().getTileScaled());
     }
 }
