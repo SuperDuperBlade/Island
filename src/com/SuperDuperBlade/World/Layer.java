@@ -2,6 +2,7 @@ package com.SuperDuperBlade.World;
 
 import com.SuperDuperBlade.Main;
 
+import java.awt.*;
 import java.io.*;
 import java.util.Arrays;
 
@@ -19,6 +20,32 @@ public class Layer {
         loadMapData();
     }
 
+
+
+    public void drawLayer(Graphics2D g2, Camera camera){
+
+        int tilescale = Main.getWindow().getTileScaled();
+
+
+        for (int i = 0; i <camera.getMaxTilesY();i++){
+
+            int posYOnScreen = (i*tilescale)-camera.getOffsetY();
+            int posY = i + camera.getRenderPosStartY();
+            for (int j = 0; j < camera.getMaxTilesX(); j++) {
+                try {
+                    g2.drawImage(tilemap[posY][j + camera.getRenderPosStartX()].getImage(), (j * tilescale) - camera.getOffsetX(), posYOnScreen, null);
+                }catch (ArrayIndexOutOfBoundsException e) {}
+            }
+        }
+    }
+
+
+
+
+
+
+
+
     // loads tha information
     // rowEnd is the row that the fileParser stops parsing the data
     public void loadMapData(){
@@ -31,7 +58,7 @@ public class Layer {
             tilemap = new Tile[lines][];
 
             for (int i = 0; line != null ; i++) {
-                int mapDataRow[] = Arrays.stream(line.trim().split(" ")).mapToInt(Integer::parseInt).toArray();
+                int mapDataRow[] = Arrays.stream(line.split(" ")).mapToInt(Integer::parseInt).toArray();
                 tilemap[i] = Tile.valueOfArray(mapDataRow);
                 line = fileReader.readLine();
             }

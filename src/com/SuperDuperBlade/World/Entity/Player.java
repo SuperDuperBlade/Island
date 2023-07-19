@@ -52,6 +52,7 @@ public class Player extends Entity{
             this.position.addToPosX(motion);
             selectedImage = playerRight;
         }
+
     }
 
     @Override

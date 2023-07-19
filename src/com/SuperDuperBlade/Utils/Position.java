@@ -29,13 +29,13 @@ public class Position {
         this.posY += add;
     }
     public void addToPosX(double add) {
-        this.posY += add;
+        this.posX += add;
     }
 
     public int convertToWorldPosX(){
         return (int) (posX/ Main.getWindow().getTileScaled());
     }
     public int convertToWorldPosY(){
-        return (int) (posX/ Main.getWindow().getTileScaled());
+        return (int) (posY/ Main.getWindow().getTileScaled());
     }
 }
