@@ -11,6 +11,7 @@ public class Main {
         window.setResizable(true);
         window.setTitle("Island");
 
+
         gWindow = new GameWindow();
         window.add(gWindow);
         window.pack();
