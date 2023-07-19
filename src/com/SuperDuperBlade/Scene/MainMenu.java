@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class MainMenu extends Scence {
     @Override
-    public void update() {
+    public void update(double delta) {
 
     }
 

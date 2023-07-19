@@ -12,7 +12,7 @@ public class SceneManager {
 
 
 
-    public void update() {currentScene.update();}
+    public void update(double delta) {currentScene.update(delta);}
     public void draw(Graphics2D g2) {
         if (currentScene!=null) currentScene.draw(g2);
     }
