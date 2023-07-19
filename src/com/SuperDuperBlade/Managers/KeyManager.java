@@ -8,13 +8,15 @@ public  class KeyManager implements KeyListener {
 
 
     //If you have more keys on your keyboard than this...
-    public boolean[] keyPressed = new boolean[400];
+    public boolean[] keyPressed = new boolean[300];
+    public boolean[] keyTyped = new boolean[300];
     public String message = "";
 
 
     @Override
     public void keyTyped(KeyEvent e) {
         char keyCode = e.getKeyChar();
+        this.keyTyped[java.awt.event.KeyEvent.getExtendedKeyCodeForChar(keyCode)] = true;
         switch (keyCode) {
             case KeyEvent.VK_ENTER:
                 this.message = "";
@@ -52,4 +54,12 @@ public  class KeyManager implements KeyListener {
     public boolean isKeyPressed(int key){
         return keyPressed[key];
     }
+
+    public boolean isKeyTyped(int keycode){
+        boolean typed =   this.keyTyped[keycode];
+
+        this.keyTyped[keycode] = false;
+        return typed;
+    }
+
 }

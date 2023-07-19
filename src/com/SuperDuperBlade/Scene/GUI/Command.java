@@ -13,7 +13,8 @@ public class Command extends Gui{
 
     @Override
     public void draw(Graphics2D g2) {
-        if (keyManager.isKeyPressed(KeyEvent.VK_TAB)) toggled = !toggled;
+        if (keyManager.isKeyTyped(KeyEvent.VK_T)) toggled = !toggled;
+
 
         if (toggled){
             g2.setColor(new Color(9,2,0,127));
