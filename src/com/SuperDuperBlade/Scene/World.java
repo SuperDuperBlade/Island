@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class World extends Scence {
     private ArrayList<Layer> layers = new ArrayList<>();
     private ArrayList<Entity> entities = new ArrayList<>();
-    private ArrayList<Gui> guis = new ArrayList<>();
+
     private Camera camera;
     private Player player = new Player(100,500, new Position(1,1));
 
@@ -27,7 +27,7 @@ public class World extends Scence {
         entities.add(new NPC(1,1,new Position(20,2)));
         entities.add(new NPC(1,1,new Position(20,20)));
         entities.add(new NPC(1,1,new Position(20,27)));
-        guis.add(new Command());
+        guis.add(new Command(this));
         camera = new Camera(player);
     }
 
@@ -49,29 +49,11 @@ public class World extends Scence {
         for (Layer layer: layers){
             layer.drawLayer(g2,camera);
         }
-        int tileScale = Main.getWindow().getTileScaled();
         //Entity render
         for (Entity e :entities){
-
-            int entityPosY = e.getPosition().convertToWorldPosY(), entityPosX = e.getPosition().convertToWorldPosX();
-
-                //the range is increased to make sure that the entities stop getting doawn offscreen
-            if (entityPosY > camera.getRenderPosStartY() -1 && entityPosY < camera.getEndRenderPosY() + 1 ){
-                if (entityPosX > camera.getRenderPosStartX() -1  && entityPosX < camera.getEndRenderPosX() + 1){
-                    int posYOnScreen =  (tileScale*(e.getPosition().convertToWorldPosY() - camera.getRenderPosStartY()));
-                    int posXOnScreen =   (tileScale*(e.getPosition().convertToWorldPosX() - camera.getRenderPosStartX()));
-
-                    if (e != camera.getSelectedEntity()){
-                        posXOnScreen -= camera.getOffsetX();
-                        posYOnScreen -= camera.getOffsetY();
-                    }
-
-                    e.draw(g2,posXOnScreen,posYOnScreen);
-                }
-            }
+            camera.renderOntoScreen(e,g2);
         }
-
-
+        //Gui rendering
         for (Gui gui:guis) {
             gui.draw(g2);
         }
@@ -81,6 +63,21 @@ public class World extends Scence {
     @Override
     public void onTick(){
         if (paused) return;
+    }
 
+    public ArrayList<Layer> getLayers() {
+        return layers;
+    }
+
+    public ArrayList<Entity> getEntities() {
+        return entities;
+    }
+
+    public Camera getCamera() {
+        return camera;
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 }

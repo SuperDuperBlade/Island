@@ -5,6 +5,8 @@ import com.SuperDuperBlade.Main;
 import com.SuperDuperBlade.Utils.Position;
 import com.SuperDuperBlade.World.Entity.Entity;
 
+import java.awt.*;
+
 
 public class Camera {
 
@@ -46,6 +48,25 @@ public class Camera {
         this.endRenderPosX = renderPosStartX + tilesToRenderX;
         this.endRenderPosY = renderPosStartY + tilesToRenderY;
     }
+
+    public void renderOntoScreen(Entity e, Graphics2D g2){
+        int entityPosY = e.getPosition().convertToWorldPosY(), entityPosX = e.getPosition().convertToWorldPosX();
+        if (entityPosY > this.getRenderPosStartY() -1 && entityPosY < this.getEndRenderPosY() + 1 ){
+            if (entityPosX > this.getRenderPosStartX() -1  && entityPosX < this.getEndRenderPosX() + 1){
+                int posYOnScreen =  (Main.getTileScaled()*(e.getPosition().convertToWorldPosY() - this.getRenderPosStartY()));
+                int posXOnScreen =   (Main.getTileScaled()*(e.getPosition().convertToWorldPosX() - this.getRenderPosStartX()));
+
+                if (e != this.getSelectedEntity()){
+                    posXOnScreen -= this.getOffsetX();
+                    posYOnScreen -= this.getOffsetY();
+                }
+
+                e.draw(g2,posXOnScreen,posYOnScreen);
+            }
+        }
+    }
+
+
 
     public Position getPosition() {
         return position;
