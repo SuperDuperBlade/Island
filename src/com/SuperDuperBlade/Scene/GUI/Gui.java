@@ -6,6 +6,7 @@ import com.SuperDuperBlade.Managers.KeyManager;
 import com.SuperDuperBlade.Managers.MouseManager;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 
 public abstract class Gui {
@@ -19,6 +20,13 @@ public abstract class Gui {
 
     public void onTick(){}
     public void draw(Graphics2D g2){}
+
+    public void keyTyped(KeyEvent e) {}
+
+    public void keyPressed(KeyEvent e){}
+
+
+    public void keyReleased(KeyEvent e) {}
 
 
 }
