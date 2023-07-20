@@ -1,5 +1,8 @@
 package com.SuperDuperBlade.Managers;
 
+import com.SuperDuperBlade.Main;
+import com.SuperDuperBlade.Scene.GUI.Gui;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -10,11 +13,19 @@ public  class KeyManager implements KeyListener {
     //If you have more keys on your keyboard than this...
     public boolean[] keyPressed = new boolean[300];
     public boolean[] keyTyped = new boolean[300];
+
+
+
     public String message = "";
 
 
     @Override
     public void keyTyped(KeyEvent e) {
+            //Gui window hook
+        for (Gui g: Main.getWindow().getScence().guis) {
+            g.keyTyped(e);
+        }
+
         char keyCode = e.getKeyChar();
         this.keyTyped[java.awt.event.KeyEvent.getExtendedKeyCodeForChar(keyCode)] = true;
         switch (keyCode) {
@@ -28,6 +39,7 @@ public  class KeyManager implements KeyListener {
                 this.message += e.getKeyChar();
                 break;
         }
+
     }
 
     @Override
