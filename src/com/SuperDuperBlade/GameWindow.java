@@ -3,10 +3,12 @@ package com.SuperDuperBlade;
 
 import com.SuperDuperBlade.Managers.KeyManager;
 import com.SuperDuperBlade.Managers.MouseManager;
-import com.SuperDuperBlade.Managers.SceneManager;
+import com.SuperDuperBlade.Scene.Scence;
+import com.SuperDuperBlade.Scene.World;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
 
 
 @SuppressWarnings("all")
@@ -14,7 +16,7 @@ public class GameWindow extends JPanel implements Runnable {
     private   Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     private int screenSizeY = screenSize.height / 2 + 32;
     private int screenSizeX = screenSize.width / 2;
-    private static final SceneManager sceneManager = new SceneManager();
+
 
     private   GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
 
@@ -51,7 +53,7 @@ public class GameWindow extends JPanel implements Runnable {
 
     @Override
     public void run() {
-        sceneManager.changeScence(0);
+        changeScence(0);
         new Thread(()->{
             startTickThread();
         }).start();
@@ -61,7 +63,7 @@ public class GameWindow extends JPanel implements Runnable {
 
 
     public void update(double delta) {
-        sceneManager.update(delta);
+        currentScene.update(delta);
         this.screenSizeX = this.getWidth();
         this.screenSizeY = this.getHeight();
     }
@@ -72,8 +74,8 @@ public class GameWindow extends JPanel implements Runnable {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         g2.setBackground(Color.CYAN);
-
-        sceneManager.draw(g2);
+        if (currentScene !=null)
+        currentScene.draw(g2);
         g2.dispose();
     }
 
@@ -103,7 +105,7 @@ public class GameWindow extends JPanel implements Runnable {
                     fps += 1000000000;
                 }
                 Thread.sleep((long) remainingTime);
-                sceneManager.onTick();
+                currentScene.onTick();
 
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
@@ -155,6 +157,31 @@ public class GameWindow extends JPanel implements Runnable {
 
     }
 
+    private Scence currentScene;
+
+
+    public void onEventMouse(MouseEvent e){currentScene.onEventMouse(e);}
+
+
+
+
+    public void changeScence(int scence) {
+
+        switch (scence) {
+            case 0:
+                currentScene = new World();
+                break;
+            case 1:
+                break;
+            default:
+                throw new RuntimeException("Invalid Scene");
+        }
+
+    }
+    public Scence getScence(){
+        return currentScene;
+    }
+
 
     public KeyManager getKeyManager() {
         return this.keyManager;
@@ -184,12 +211,7 @@ public class GameWindow extends JPanel implements Runnable {
         return tileScaled;
     }
 
-    public MouseManager getMouseManager() {
-        return mouseManager;
-    }
-    public SceneManager getSceneManager() {
-        return sceneManager;
-    }
+
 
     public int getScale() {
         return scale;
@@ -197,5 +219,9 @@ public class GameWindow extends JPanel implements Runnable {
 
     public void setScale(int scale) {
         this.scale = scale;
+    }
+
+    public MouseManager getMouseManager() {
+        return this.mouseManager;
     }
 }

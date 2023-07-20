@@ -27,6 +27,12 @@ public class Main {
     public static void debug(String text){
         System.out.println("DEBUG: "+text);
     }
+    public static int getScale(){
+        return gWindow.getScale();
+    }
+    public static int getTileScaled(){
+        return gWindow.getTileScaled();
+    }
 
 
 }
