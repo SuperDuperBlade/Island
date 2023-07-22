@@ -9,7 +9,7 @@ import java.io.IOException;
 public enum Tile {
 
 
-    WATER("/Tiles/Water.png", false),// 0
+    WATER("/Tiles/Water.png", true),// 0
     GRASS("/Tiles/Grass.png", false),// 1
     SAND("/Tiles/Sand.png", false);//   2
 

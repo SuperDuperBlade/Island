@@ -25,8 +25,7 @@ public abstract class Entity {
         this.hitBoxY = hitBoxY;
     }
 
-    public  void update(double delta){
-    }
+    public abstract void update(double delta);
 
 
     public abstract void draw(Graphics2D g2, int posX,int posY);

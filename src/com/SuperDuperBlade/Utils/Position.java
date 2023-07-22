@@ -1,5 +1,6 @@
 package com.SuperDuperBlade.Utils;
 
+import com.SuperDuperBlade.GameWindow;
 import com.SuperDuperBlade.Main;
 import com.SuperDuperBlade.Scene.Scence;
 import com.SuperDuperBlade.Scene.World;
@@ -22,6 +23,9 @@ public class Position {
     }
 
     public boolean testCollision(){
+        if (Util.checkForTileCollision(entity)){
+
+        }
 
         Scence scence = Main.getWindow().getScence();
         if (scence instanceof World){
@@ -69,10 +73,10 @@ public class Position {
     }
 
     public int convertToWorldPosX(){
-        return (int) (posX/ Main.getWindow().getTileScaled());
+        return (int) Math.floor(posX/ (Main.getTileScaled()));
     }
     public int convertToWorldPosY(){
-        return (int) (posY/ Main.getWindow().getTileScaled());
+        return (int) Math.floor(posY/( Main.getWindow().getTileScaled()));
     }
 
     public int offsetX(){
@@ -81,5 +85,12 @@ public class Position {
     public int offsetY(){
         return (int) (posY%Main.getWindow().getTileScaled());
     }
+    public int convertToWorldCentrePosX(){
+        return (int) (posX + (Main.getTileScaled()/2))/Main.getTileScaled();
+    }
+    public int convertToWorldCentrePosY(){
+        return  convertToWorldPosY()+1;
+    }
+
 
 }

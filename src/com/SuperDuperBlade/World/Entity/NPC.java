@@ -27,15 +27,13 @@ public class NPC extends Entity{
 
     @Override
     public void update(double delta) {
-        super.update(delta);
-
-
     }
 
     @Override
     public void draw(Graphics2D g2, int posX, int posY) {
         int size = Main.getWindow().getTileScaled();
         g2.drawImage(selectedImage,posX,posY,size,size,null);
+        g2.drawRect(posX,posY,hitBoxX,hitBoxY);
     }
 
 

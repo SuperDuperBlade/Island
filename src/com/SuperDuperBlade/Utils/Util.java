@@ -1,5 +1,7 @@
 package com.SuperDuperBlade.Utils;
 
+import com.SuperDuperBlade.Main;
+import com.SuperDuperBlade.Scene.Scence;
 import com.SuperDuperBlade.Scene.World;
 import com.SuperDuperBlade.World.Entity.Entity;
 import com.SuperDuperBlade.World.Layer;
@@ -26,14 +28,25 @@ public  class Util {
         }
         return false;
     }
-    public static boolean checkForTileCollision(Entity e, World world){
-        int posX = e.getPosition().convertToWorldPosX();
-        int posY = e.getPosition().convertToWorldPosY();
-        for (Layer layer:world.getLayers()) {
-            if (layer.getTilemap()[posY][posX].isCollisionEnabled()){
-                return true;
+    public static boolean checkForTileCollision(Entity e){
+
+            try {
+                if (Main.getWindow().getScence() instanceof World) {
+                    World world = (World) Main.getWindow().getScence();
+
+                    int posX = e.getPosition().convertToWorldCentrePosX();
+                    int posY = e.getPosition().convertToWorldCentrePosY();
+
+                    for (Layer layer : world.getLayers()) {
+
+                        if (layer.getTilemap()[posY][posX].isCollisionEnabled()) {
+                            return true;
+                        }
+                    }
+                }
+            }catch (Exception ex){
+                return false;
             }
-        }
         return false;
     }
 }

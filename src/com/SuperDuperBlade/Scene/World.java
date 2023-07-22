@@ -19,14 +19,15 @@ public class World extends Scence {
     private ArrayList<Entity> entities = new ArrayList<>();
 
     private Camera camera;
-    private Player player = new Player(100,500, new Position(1,1));
+    private Player player = new Player(100, 500, 1, 1, 48, 48);
 
-    public World(){
+    public World() {
+        System.out.println(2);
         layers.add(new Layer(new File("/home/sam/IdeaProjects/Islands/src/Res/Maps/Map1.txt")));
         entities.add(player);
-        entities.add(new NPC(1,1,new Position(20,2)));
-        entities.add(new NPC(1,1,new Position(20,20)));
-        entities.add(new NPC(1,1,new Position(20,27)));
+        entities.add(new NPC(1, 1, 20, 2, 32, 32));
+        entities.add(new NPC(1, 1, 20, 2, 32, 32));
+        entities.add(new NPC(1, 1, 20, 20, 48, 48));
         guis.add(new Command(this));
         camera = new Camera(player);
     }
@@ -35,49 +36,51 @@ public class World extends Scence {
     public void update(double delta) {
         if (paused) return;
 
-         for (Entity e: entities){
-             e.update(delta);
-         }
+        for (Entity e : entities) {
+            e.update(delta);
+        }
 
-         camera.update();
+        camera.update();
     }
 
     @Override
     public void draw(Graphics2D g2) {
 
         // World rendering
-        for (Layer layer: layers){
-            layer.drawLayer(g2,camera);
+        for (Layer layer : layers) {
+            layer.drawLayer(g2, camera);
         }
         //Entity render
-        for (Entity e :entities){
-            camera.renderOntoScreen(e,g2);
+        for (Entity e : entities) {
+            camera.renderOntoScreen(e, g2);
+            g2.setColor(Color.RED);
         }
-        //Gui rendering
-        for (Gui gui:guis) {
-            gui.draw(g2);
+            //Gui rendering
+            for (Gui gui : guis) {
+                gui.draw(g2);
+            }
+
+
+    }
+        @Override
+        public void onTick() {
+            if (paused) return;
         }
 
+        public ArrayList<Layer> getLayers () {
+            return layers;
+        }
+
+        public ArrayList<Entity> getEntities () {
+            return entities;
+        }
+
+        public Camera getCamera () {
+            return camera;
+        }
+
+        public Player getPlayer () {
+            return player;
+        }
     }
 
-    @Override
-    public void onTick(){
-        if (paused) return;
-    }
-
-    public ArrayList<Layer> getLayers() {
-        return layers;
-    }
-
-    public ArrayList<Entity> getEntities() {
-        return entities;
-    }
-
-    public Camera getCamera() {
-        return camera;
-    }
-
-    public Player getPlayer() {
-        return player;
-    }
-}

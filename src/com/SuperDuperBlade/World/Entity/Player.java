@@ -33,7 +33,6 @@ public class Player extends Entity{
     //TODO add images for the player going diagonally
     @Override
     public void update(double delta) {
-        super.update(delta);
         double motion = calulateSpeedDif(delta);
 
         if (keyManager.keyPressed[KeyEvent.VK_W]) {
@@ -59,6 +58,7 @@ public class Player extends Entity{
     @Override
     public void draw(Graphics2D g2, int posX, int posY) {
         g2.drawImage(selectedImage,posX,posY,Main.getTileScaled(),Main.getTileScaled(),null);
+        g2.drawRect(posX,posY,hitBoxX,hitBoxY);
     }
 
 
