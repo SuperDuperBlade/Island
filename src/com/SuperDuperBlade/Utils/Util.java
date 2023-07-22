@@ -1,6 +1,8 @@
 package com.SuperDuperBlade.Utils;
 
+import com.SuperDuperBlade.Scene.World;
 import com.SuperDuperBlade.World.Entity.Entity;
+import com.SuperDuperBlade.World.Layer;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -19,6 +21,16 @@ public  class Util {
     public static boolean checkForEntityCollision(Entity e , Entity e1){
         if (e.getPosition().getPosY() + e.getHitBoxY() > e1.getPosition().getPosY() && e.getPosition().getPosY() < e1.getPosition().getPosY() + e1.getHitBoxY()){
             if (e.getPosition().getPosX() + e.getHitBoxX() > e1.getPosition().getPosX() && e.getPosition().getPosX() < e1.getPosition().getPosX() + e1.getHitBoxX()){
+                return true;
+            }
+        }
+        return false;
+    }
+    public static boolean checkForTileCollision(Entity e, World world){
+        int posX = e.getPosition().convertToWorldPosX();
+        int posY = e.getPosition().convertToWorldPosY();
+        for (Layer layer:world.getLayers()) {
+            if (layer.getTilemap()[posY][posX].isCollisionEnabled()){
                 return true;
             }
         }
