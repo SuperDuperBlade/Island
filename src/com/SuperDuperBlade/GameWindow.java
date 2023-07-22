@@ -22,11 +22,12 @@ public class GameWindow extends JPanel implements Runnable {
 
     //TODO Add a option to disable VSYNC
     private int FPSCAP = env.getDefaultScreenDevice().getDisplayMode().getRefreshRate();
-    private int scale = 4;
+    private int scale = 5;
     private int tileSize = 16;
     private int tileScaled = scale * tileSize;
     private byte TPS = 20;
 
+    public Graphics2D g2;
 
     public MouseManager mouseManager = new MouseManager();
 
@@ -74,6 +75,7 @@ public class GameWindow extends JPanel implements Runnable {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         g2.setBackground(Color.CYAN);
+        this.g2 = g2;
         if (currentScene !=null)
         currentScene.draw(g2);
         g2.dispose();
