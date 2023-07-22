@@ -7,8 +7,10 @@ import javax.swing.*;
 
 public class Main {
     private static GameWindow gWindow;
+    private static String workingDirectory;
 
     public static void main(String args[]){
+        workingDirectory = args[0];
          JFrame  window = new JFrame();
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         window.setResizable(true);
@@ -36,6 +38,11 @@ public class Main {
     public static int getTileScaled(){
         return gWindow.getTileScaled();
     }
+
+    public static String getWorkingDirectory() {
+        return workingDirectory;
+    }
+
     public static Camera getCamera(){
         if (gWindow.getScence() instanceof World){
             World world  = (World) gWindow.getScence();

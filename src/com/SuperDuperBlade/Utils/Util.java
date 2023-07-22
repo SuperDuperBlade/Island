@@ -9,7 +9,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
+import java.io.InputStream;
 
 public  class Util {
 
@@ -21,8 +21,8 @@ public  class Util {
             throw new RuntimeException(e);
         }
     }
-    public static File getFileFromSource(String location){
-        return new File(Util.class.getResource(location).getFile());
+    public static File getFileFromSource(String location) {
+        return new File(Main.getWorkingDirectory()+location);
     }
     public static boolean checkForEntityCollision(Entity e , Entity e1){
         if (e.getPosition().getPosY() + e.getHitBoxY() > e1.getPosition().getPosY() && e.getPosition().getPosY() < e1.getPosition().getPosY() + e1.getHitBoxY()){

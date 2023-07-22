@@ -7,6 +7,7 @@ import com.SuperDuperBlade.World.TIle.TileInfo;
 
 import java.awt.*;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 
@@ -52,6 +53,7 @@ public class Layer {
     // loads tha information
     // rowEnd is the row that the fileParser stops parsing the data
     public void loadMapData(){
+
         long start = System.currentTimeMillis();
         int lines  = getLinesInFile(mapDataLocation);
 
@@ -69,7 +71,7 @@ public class Layer {
             throw new RuntimeException(e);
         }
 
-        Main.debug("Time taken to load "+mapDataLocation.getName()+": "+ (System.currentTimeMillis()-start)+"ms");
+        Main.debug("Time taken to load map"+mapDataLocation.getName()+": "+ (System.currentTimeMillis()-start)+"ms");
 
 
     }

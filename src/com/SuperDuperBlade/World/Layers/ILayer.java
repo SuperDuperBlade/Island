@@ -1,6 +1,7 @@
 package com.SuperDuperBlade.World.Layers;
 
 import java.io.File;
+import java.io.InputStream;
 
 public class ILayer extends Layer {
 
