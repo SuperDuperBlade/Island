@@ -25,7 +25,7 @@ public class MouseManager implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        Main.getWindow().getSceneManager().onEventMouse(e);
+        Main.getWindow().onEventMouse(e);
     }
 
     @Override
