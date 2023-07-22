@@ -10,6 +10,7 @@ public abstract class Entity {
     public  int health , movementSpeed;
     public Position position;
 
+    //TODO Allow the hitBox to be positioned
     public int hitBoxX , hitBoxY;
 
 
