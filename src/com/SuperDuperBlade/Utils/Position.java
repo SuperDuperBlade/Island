@@ -24,7 +24,7 @@ public class Position {
 
     public boolean testCollision(){
         if (Util.checkForTileCollision(entity)){
-
+            return true;
         }
 
         Scence scence = Main.getWindow().getScence();
