@@ -10,13 +10,25 @@ public abstract class Entity {
     public  int health , movementSpeed;
     public Position position;
 
-    public Entity(int health, int movementSpeed, Position position) {
+    public int hitBoxX , hitBoxY;
+
+
+
+
+
+
+    public Entity(int health, int movementSpeed, int posX, int posY, int hitBoxX,int hitBoxY) {
         this.health = health;
         this.movementSpeed = movementSpeed;
-        this.position = new Position(position.getPosX() * Main.getWindow().getTileScaled(),position.getPosY() * Main.getWindow().getTileScaled());
+        this.position =  new Position(this,posX * Main.getWindow().getTileScaled(),posY * Main.getWindow().getTileScaled());
+        this.hitBoxX = hitBoxX;
+        this.hitBoxY = hitBoxY;
     }
 
-    public abstract void update(double delta);
+    public  void update(double delta){
+    }
+
+
     public abstract void draw(Graphics2D g2, int posX,int posY);
     public abstract void  onTick();
 
@@ -45,6 +57,22 @@ public abstract class Entity {
 
     public void setPosition(Position position) {
         this.position = position;
+    }
+
+    public int getHitBoxX() {
+        return hitBoxX;
+    }
+
+    public void setHitBoxX(int hitBoxX) {
+        this.hitBoxX = hitBoxX;
+    }
+
+    public int getHitBoxY() {
+        return hitBoxY;
+    }
+
+    public void setHitBoxY(int hitBoxY) {
+        this.hitBoxY = hitBoxY;
     }
 }
 

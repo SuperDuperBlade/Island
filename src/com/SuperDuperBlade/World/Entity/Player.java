@@ -1,7 +1,10 @@
 package com.SuperDuperBlade.World.Entity;
 
+import com.SuperDuperBlade.GameWindow;
 import com.SuperDuperBlade.Main;
 import com.SuperDuperBlade.Managers.KeyManager;
+import com.SuperDuperBlade.Scene.Scence;
+import com.SuperDuperBlade.Scene.World;
 import com.SuperDuperBlade.Utils.Position;
 import com.SuperDuperBlade.Utils.Util;
 
@@ -11,6 +14,7 @@ import java.awt.image.BufferedImage;
 
 public class Player extends Entity{
     private final KeyManager keyManager;
+
     String playerImagePath = "/Res/Entities/Player/player";
     private final BufferedImage
             playerUp = Util.getImageFromSource(playerImagePath+"Up.png"),
@@ -20,20 +24,16 @@ public class Player extends Entity{
     //DEFAULT
     private BufferedImage selectedImage = playerDown;
 
-
-
-
-    public Player(int health, int movementSpeed, Position position) {
-        super(health, movementSpeed, position);
+    public Player(int health, int movementSpeed, int posX, int posY, int hitBoxX, int hitBoxY) {
+        super(health, movementSpeed, posX, posY, hitBoxX, hitBoxY);
         this.keyManager = Main.getWindow().getKeyManager();
     }
-
-
 
 
     //TODO add images for the player going diagonally
     @Override
     public void update(double delta) {
+        super.update(delta);
         double motion = calulateSpeedDif(delta);
 
         if (keyManager.keyPressed[KeyEvent.VK_W]) {
@@ -53,12 +53,12 @@ public class Player extends Entity{
             selectedImage = playerRight;
         }
 
+
     }
 
     @Override
     public void draw(Graphics2D g2, int posX, int posY) {
-        int size = Main.getWindow().getTileScaled();
-        g2.drawImage(selectedImage,posX,posY,size,size,null);
+        g2.drawImage(selectedImage,posX,posY,Main.getTileScaled(),Main.getTileScaled(),null);
     }
 
 
@@ -66,6 +66,9 @@ public class Player extends Entity{
     public void onTick() {
 
     }
+
+
+
 
 
 

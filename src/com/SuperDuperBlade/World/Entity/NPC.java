@@ -20,19 +20,14 @@ public class NPC extends Entity{
     //DEFAULT
     private BufferedImage selectedImage = playerDown;
 
-
-
-
-    public NPC(int health, int movementSpeed, Position position) {
-        super(health, movementSpeed, position);
+    public NPC(int health, int movementSpeed, int posX, int posY, int hitBoxX, int hitBoxY) {
+        super(health, movementSpeed, posX, posY, hitBoxX, hitBoxY);
     }
-
-
-
 
 
     @Override
     public void update(double delta) {
+        super.update(delta);
 
 
     }
