@@ -1,5 +1,8 @@
 package com.SuperDuperBlade;
 
+import com.SuperDuperBlade.Scene.World;
+import com.SuperDuperBlade.World.Camera;
+
 import javax.swing.*;
 
 public class Main {
@@ -32,6 +35,13 @@ public class Main {
     }
     public static int getTileScaled(){
         return gWindow.getTileScaled();
+    }
+    public static Camera getCamera(){
+        if (gWindow.getScence() instanceof World){
+            World world  = (World) gWindow.getScence();
+            return world.getCamera();
+        }
+        return null;
     }
 
 
