@@ -1,4 +1,4 @@
-package com.SuperDuperBlade.World;
+package com.SuperDuperBlade.World.TIle;
 
 import com.SuperDuperBlade.Main;
 
@@ -6,19 +6,22 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.IOException;
 
-public enum Tile {
+public enum TileInfo {
 
 
-    WATER("/Tiles/Water.png", true),// 0
+    WATER("/Tiles/Water.png", false),// 0
     GRASS("/Tiles/Grass.png", false),// 1
-    SAND("/Tiles/Sand.png", false);//   2
+    SAND("/Tiles/Sand.png", true), //   2
+    TREE("/Tiles/Interactables/tree.png",true);
 
 
     private Image image;
     private boolean collisionEnabled;
+    private static int cashedValue;
+    private static TileInfo cashedTile;
 
 
-    Tile(String imageLocation , boolean collide){
+    TileInfo(String imageLocation , boolean collide){
         this.collisionEnabled = collide;
         try {
             int tileSize = Main.getWindow().getTileScaled();
@@ -28,11 +31,19 @@ public enum Tile {
         }
     }
 
-    public static Tile valueOf(int value){
+    public static TileInfo valueOf(int value){
+
+        //reduces loading speed
+        if (cashedValue == value){
+            return cashedTile;
+        }
+
 
         for (int i = 0 ;i <values().length;i++){
             if (i==value){
-                return values()[i];
+                cashedValue = i;
+                cashedTile = values()[i];
+                return cashedTile;
             }
         }
         //Default tile if no tiles are found
@@ -42,7 +53,7 @@ public enum Tile {
     public static Tile[] valueOfArray(int intergerArray[]){
         Tile[] tileArray = new Tile[intergerArray.length];
         for (int i = 0; i < intergerArray.length; i++) {
-            tileArray[i] = valueOf(intergerArray[i]);
+            tileArray[i] = new Tile(intergerArray[i]);
         }
         return tileArray;
     }

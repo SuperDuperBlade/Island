@@ -1,10 +1,9 @@
 package com.SuperDuperBlade.Utils;
 
 import com.SuperDuperBlade.Main;
-import com.SuperDuperBlade.Scene.Scence;
 import com.SuperDuperBlade.Scene.World;
 import com.SuperDuperBlade.World.Entity.Entity;
-import com.SuperDuperBlade.World.Layer;
+import com.SuperDuperBlade.World.Layers.Layer;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -38,8 +37,7 @@ public  class Util {
                     int posY = e.getPosition().convertToWorldCentrePosY();
 
                     for (Layer layer : world.getLayers()) {
-
-                        if (layer.getTilemap()[posY][posX].isCollisionEnabled()) {
+                        if (layer.getTilemap()[posY][posX].collidable) {
                             return true;
                         }
                     }
