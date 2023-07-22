@@ -3,6 +3,7 @@ package com.SuperDuperBlade.Scene.GUI;
 import com.SuperDuperBlade.Main;
 import com.SuperDuperBlade.Managers.KeyManager;
 import com.SuperDuperBlade.Scene.World;
+import com.SuperDuperBlade.Utils.Position;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -47,11 +48,14 @@ public class Command extends Gui{
 
     public void parseMessage(){
         String[] message = keyManager.getMessage().split(" ");
-        //todo add responses to commands
+        //todo add responses to commands and handling of errors
         try {
             switch (message[0]){
                 case "player.speed":
                     world.getCamera().getSelectedEntity().setMovementSpeed(Integer.parseInt(message[1]));
+                    break;
+                case "player.teleport":
+                    world.getCamera().getSelectedEntity().position = new Position(world.getCamera().getSelectedEntity(),Integer.parseInt(message[1]),Integer.parseInt(message[2]));
                     break;
             }
         }catch (Exception e){
