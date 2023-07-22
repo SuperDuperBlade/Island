@@ -1,6 +1,9 @@
-package com.SuperDuperBlade.World;
+package com.SuperDuperBlade.World.Layers;
 
 import com.SuperDuperBlade.Main;
+import com.SuperDuperBlade.World.Camera;
+import com.SuperDuperBlade.World.TIle.Tile;
+import com.SuperDuperBlade.World.TIle.TileInfo;
 
 import java.awt.*;
 import java.io.*;
@@ -59,7 +62,7 @@ public class Layer {
 
             for (int i = 0; line != null ; i++) {
                 int mapDataRow[] = Arrays.stream(line.split(" ")).mapToInt(Integer::parseInt).toArray();
-                tilemap[i] = Tile.valueOfArray(mapDataRow);
+                tilemap[i] = TileInfo.valueOfArray(mapDataRow);
                 line = fileReader.readLine();
             }
         } catch (IOException e) {
