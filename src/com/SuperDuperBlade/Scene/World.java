@@ -3,6 +3,7 @@ package com.SuperDuperBlade.Scene;
 import com.SuperDuperBlade.Main;
 import com.SuperDuperBlade.Scene.GUI.Command;
 import com.SuperDuperBlade.Scene.GUI.Gui;
+import com.SuperDuperBlade.Utils.Util;
 import com.SuperDuperBlade.World.Camera;
 import com.SuperDuperBlade.World.Entity.Entity;
 import com.SuperDuperBlade.World.Entity.NPC;
@@ -23,8 +24,8 @@ public class World extends Scence {
 
 
     public World(){
-        layers.add(new Layer(new File("/home/sam/IdeaProjects/Islands/src/Res/Maps/Map1.txt")));
-        layers.add(new ILayer(new File("/home/sam/IdeaProjects/Islands/src/Res/Maps/Map1Interactable.txt")));
+        layers.add(new Layer(Util.getFileFromSource("/Maps/Map1.txt")));
+        layers.add(new ILayer(Util.getFileFromSource("/Maps/Map1Interactable.txt")));
         entities.add(player);
         entities.add(new NPC(1, 1, 20, 2, 32, 32));
         entities.add(new NPC(1, 1, 20, 2, 32, 32));

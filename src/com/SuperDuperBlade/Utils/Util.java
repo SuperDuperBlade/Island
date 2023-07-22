@@ -7,7 +7,9 @@ import com.SuperDuperBlade.World.Layers.Layer;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 public  class Util {
 
@@ -18,6 +20,9 @@ public  class Util {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+    public static File getFileFromSource(String location){
+        return new File(Util.class.getResource(location).getFile());
     }
     public static boolean checkForEntityCollision(Entity e , Entity e1){
         if (e.getPosition().getPosY() + e.getHitBoxY() > e1.getPosition().getPosY() && e.getPosition().getPosY() < e1.getPosition().getPosY() + e1.getHitBoxY()){
