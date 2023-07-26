@@ -27,7 +27,7 @@ public  class KeyManager implements KeyListener {
         }
 
         char keyCode = e.getKeyChar();
-        this.keyTyped[java.awt.event.KeyEvent.getExtendedKeyCodeForChar(keyCode)] = true;
+        this.keyTyped[KeyEvent.getExtendedKeyCodeForChar(keyCode)] = true;
         switch (keyCode) {
             case KeyEvent.VK_ENTER:
                 this.message = "";

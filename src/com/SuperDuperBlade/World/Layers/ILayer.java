@@ -9,4 +9,8 @@ public class ILayer extends Layer {
         super(mapDataLocation);
     }
 
+    public void update(){
+
+    }
+
 }
