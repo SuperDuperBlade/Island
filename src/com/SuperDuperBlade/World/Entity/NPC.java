@@ -12,13 +12,13 @@ import java.awt.image.BufferedImage;
 public class NPC extends Entity{
 
     String playerImagePath = "/Res/Entities/Player/player";
-    private final BufferedImage
+    private final Image
             playerUp = Util.getImageFromSource(playerImagePath+"Up.png"),
             playerDown = Util.getImageFromSource(playerImagePath+"Down.png"),
             playerLeft = Util.getImageFromSource(playerImagePath+"Left.png"),
             playerRight = Util.getImageFromSource(playerImagePath+"Right.png");
     //DEFAULT
-    private BufferedImage selectedImage = playerDown;
+    private Image selectedImage = playerDown;
 
     public NPC(int health, int movementSpeed, int posX, int posY, int hitBoxX, int hitBoxY) {
         super(health, movementSpeed, posX, posY, hitBoxX, hitBoxY);

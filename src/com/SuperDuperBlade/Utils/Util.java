@@ -6,6 +6,7 @@ import com.SuperDuperBlade.World.Entity.Entity;
 import com.SuperDuperBlade.World.Layers.Layer;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -13,10 +14,11 @@ import java.io.InputStream;
 
 public  class Util {
 
-    public static BufferedImage getImageFromSource(String location){
+    public static Image getImageFromSource(String location){
 
         try {
-            return  ImageIO.read(Util.class.getResourceAsStream(location));
+          return ImageIO.read(Util.class.getResourceAsStream(location)).getScaledInstance(Main.getTileScaled(),Main.getTileScaled(),0);
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -1,10 +1,13 @@
 package com.SuperDuperBlade.World.Layers;
 
 import com.SuperDuperBlade.Main;
+import com.SuperDuperBlade.Utils.Util;
 import com.SuperDuperBlade.World.Camera;
 import com.SuperDuperBlade.World.TIle.Tile;
-import com.SuperDuperBlade.World.TIle.TileInfo;
+import com.SuperDuperBlade.World.TIle.TileImageData;
+import com.SuperDuperBlade.World.TIle.Tree;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -64,7 +67,7 @@ public class Layer {
 
             for (int i = 0; line != null ; i++) {
                 int mapDataRow[] = Arrays.stream(line.split(" ")).mapToInt(Integer::parseInt).toArray();
-                tilemap[i] = TileInfo.valueOfArray(mapDataRow);
+                tilemap[i] = getTilesByArray(mapDataRow);
                 line = fileReader.readLine();
             }
         } catch (IOException e) {
@@ -86,6 +89,24 @@ public class Layer {
         return counter;
     }
 
+    public Tile getTileByValue(int value){
+        switch (value){
+            case 0: return new Tile(TileImageData.Water.getImage(),false);
+            case 1: return new Tile(TileImageData.GRASS.getImage(),false);
+            case 2: return new Tile(TileImageData.Sand.getImage(), false);
+            case 3: return new Tree(TileImageData.TREE.getImage(),true);
+            default:
+                return null;
+        }
+    }
+
+    public Tile[] getTilesByArray(int[] values){
+        Tile[] tileArray = new Tile[values.length];
+        for (int i = 0; i < values.length; i++) {
+            tileArray[i] = getTileByValue(values[i]);
+        }
+        return tileArray;
+    }
 
     public Tile[][] getTilemap() {
         return tilemap;
