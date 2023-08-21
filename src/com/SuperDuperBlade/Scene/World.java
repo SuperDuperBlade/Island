@@ -3,6 +3,7 @@ package com.SuperDuperBlade.Scene;
 import com.SuperDuperBlade.Main;
 import com.SuperDuperBlade.Scene.GUI.Command;
 import com.SuperDuperBlade.Scene.GUI.Gui;
+import com.SuperDuperBlade.Scene.GUI.Stats;
 import com.SuperDuperBlade.Utils.Util;
 import com.SuperDuperBlade.World.Camera;
 import com.SuperDuperBlade.World.Entity.Entity;
@@ -14,6 +15,7 @@ import com.SuperDuperBlade.World.Layers.Layer;
 import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class World extends Scence {
     private ArrayList<Layer> layers = new ArrayList<>();
@@ -31,6 +33,7 @@ public class World extends Scence {
         entities.add(new NPC(1, 1, 20, 2, 32, 32));
         entities.add(new NPC(1, 1, 20, 20, 48, 48));
         guis.add(new Command(this));
+        guis.add(new Stats(this.player));
         camera = new Camera(player);
     }
 
