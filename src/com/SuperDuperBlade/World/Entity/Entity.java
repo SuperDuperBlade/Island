@@ -13,11 +13,6 @@ public abstract class Entity {
     //TODO Allow the hitBox to be positioned
     public int hitBoxX , hitBoxY;
 
-
-
-
-
-
     public Entity(int health, int movementSpeed, int posX, int posY, int hitBoxX,int hitBoxY) {
         this.health = health;
         this.movementSpeed = movementSpeed;
@@ -35,7 +30,7 @@ public abstract class Entity {
     public int getMovementSpeed() {
         return movementSpeed;
     }
-    public double calulateSpeedDif(double deltaTime){
+    public double calculateSpeedDif(double deltaTime){
         return movementSpeed*(deltaTime/1000);
     }
 
