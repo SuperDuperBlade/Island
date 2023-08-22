@@ -3,6 +3,7 @@ package com.SuperDuperBlade;
 
 import com.SuperDuperBlade.Managers.KeyManager;
 import com.SuperDuperBlade.Managers.MouseManager;
+import com.SuperDuperBlade.Scene.MainMenu;
 import com.SuperDuperBlade.Scene.Scence;
 import com.SuperDuperBlade.Scene.World;
 
@@ -75,6 +76,7 @@ public class GameWindow extends JPanel implements Runnable {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         g2.setBackground(Color.CYAN);
+        g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         this.g2 = g2;
         if (currentScene !=null)
         currentScene.draw(g2);
@@ -171,9 +173,10 @@ public class GameWindow extends JPanel implements Runnable {
 
         switch (scence) {
             case 0:
-                currentScene = new World();
+                currentScene = new MainMenu();
                 break;
             case 1:
+                currentScene = new World();
                 break;
             default:
                 throw new RuntimeException("Invalid Scene");

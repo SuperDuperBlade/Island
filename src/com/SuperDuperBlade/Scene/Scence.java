@@ -10,6 +10,9 @@ import java.util.ArrayList;
 
 public abstract class Scence {
 
+
+
+
     public boolean paused = false;
     public ArrayList<Gui> guis = new ArrayList<>();
 
