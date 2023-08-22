@@ -1,14 +1,15 @@
-package com.SuperDuperBlade.Scene.GUI;
+package com.SuperDuperBlade.Scene.GUI.Game;
 
 import com.SuperDuperBlade.Main;
 import com.SuperDuperBlade.Managers.KeyManager;
+import com.SuperDuperBlade.Scene.GUI.Gui;
 import com.SuperDuperBlade.Scene.World;
 import com.SuperDuperBlade.Utils.Position;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-public class Command extends Gui{
+public class Command extends Gui {
 
     private final World world;
 

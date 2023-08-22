@@ -14,7 +14,7 @@ public abstract class Gui {
     public MouseManager mouseManager = Main.getWindow().getMouseManager();
     public KeyManager keyManager = Main.getWindow().getKeyManager();
 
-    GameWindow getWindow(){
+    protected GameWindow getWindow(){
         return Main.getWindow();
     }
 

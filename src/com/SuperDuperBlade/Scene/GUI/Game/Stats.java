@@ -1,11 +1,12 @@
-package com.SuperDuperBlade.Scene.GUI;
+package com.SuperDuperBlade.Scene.GUI.Game;
 
 import com.SuperDuperBlade.Main;
+import com.SuperDuperBlade.Scene.GUI.Gui;
 import com.SuperDuperBlade.World.Entity.Player;
 
 import java.awt.*;
 
-public class Stats extends Gui{
+public class Stats extends Gui {
     private Player player;
 
     public Stats(Player player){
