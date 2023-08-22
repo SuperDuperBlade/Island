@@ -10,7 +10,7 @@ import java.awt.event.KeyEvent;
 
 public class Command extends Gui{
 
-    private World world;
+    private final World world;
 
     public Command(World world) {
         this.world = world;
