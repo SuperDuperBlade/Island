@@ -7,7 +7,8 @@ import com.SuperDuperBlade.World.Item.Item;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
+
+import static com.SuperDuperBlade.Utils.Util.calculateSpeedDif;
 
 public class Player extends Entity{
     private final KeyManager keyManager;
@@ -32,7 +33,7 @@ public class Player extends Entity{
     //TODO add images for the player going diagonally
     @Override
     public void update(double delta) {
-        double motion = calulateSpeedDif(delta);
+        double motion = calculateSpeedDif(delta,movementSpeed);
 
         if (keyManager.keyPressed[KeyEvent.VK_W]) {
             this.position.addToPosY(-motion);

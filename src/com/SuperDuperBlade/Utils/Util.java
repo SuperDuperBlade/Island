@@ -54,4 +54,9 @@ public  class Util {
             }
         return false;
     }
+
+    public static   double calculateSpeedDif(double deltaTime, double movementSpeed){
+        return movementSpeed*(deltaTime/1000);
+    }
+
 }

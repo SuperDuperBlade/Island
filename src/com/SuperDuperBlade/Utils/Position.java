@@ -1,6 +1,5 @@
 package com.SuperDuperBlade.Utils;
 
-import com.SuperDuperBlade.GameWindow;
 import com.SuperDuperBlade.Main;
 import com.SuperDuperBlade.Scene.Scence;
 import com.SuperDuperBlade.Scene.World;
@@ -70,6 +69,17 @@ public class Position {
         if (entity!= null&& testCollision()){
             this.posX = prePosX;
         }
+    }
+
+    public double[] getDistanceFromPosition(Position position){
+        return new double[]{
+                Math.max(posX ,position.getPosX()) -  Math.min(posX ,position.getPosX()),
+                Math.max(posY ,position.getPosX()) -  Math.min(posY ,position.getPosX()),
+        };
+    }
+    public double getTotalDistanceFromPosition(Position p){
+        double[] pos = getDistanceFromPosition(p);
+        return pos[0] + pos[1];
     }
 
     public int convertToWorldPosX(){

@@ -4,6 +4,8 @@ import com.SuperDuperBlade.Main;
 import com.SuperDuperBlade.Managers.KeyManager;
 import com.SuperDuperBlade.Utils.Position;
 import com.SuperDuperBlade.Utils.Util;
+import com.SuperDuperBlade.World.Entity.AI.AI;
+import com.SuperDuperBlade.World.Entity.AI.Follow;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -20,6 +22,8 @@ public class NPC extends Entity{
     //DEFAULT
     private Image selectedImage = playerDown;
 
+    private Follow ai;
+
     public NPC(int health, int movementSpeed, int posX, int posY, int hitBoxX, int hitBoxY) {
         super(health, movementSpeed, posX, posY, hitBoxX, hitBoxY);
     }
@@ -27,6 +31,8 @@ public class NPC extends Entity{
 
     @Override
     public void update(double delta) {
+        ai = new Follow(this, Main.getCurrentWorld().getPlayer());
+        ai.update(delta);
     }
 
     @Override

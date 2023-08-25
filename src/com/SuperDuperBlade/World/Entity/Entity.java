@@ -30,9 +30,7 @@ public abstract class Entity {
     public int getMovementSpeed() {
         return movementSpeed;
     }
-    public double calculateSpeedDif(double deltaTime){
-        return movementSpeed*(deltaTime/1000);
-    }
+
 
     public int getHealth() {
         return health;

@@ -50,6 +50,12 @@ public class Main {
         }
         return null;
     }
+    public static World getCurrentWorld(){
+        if (gWindow.getScence() instanceof World){
+            return  (World) gWindow.getScence();
+        }
+        return null;
+    }
 
 
 }

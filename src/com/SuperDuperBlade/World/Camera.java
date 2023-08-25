@@ -7,14 +7,14 @@ import com.SuperDuperBlade.World.Entity.Entity;
 
 import java.awt.*;
 
-
+@SuppressWarnings("all")
 public class Camera {
 
     private Position position;
 
     //The entity the camera will follow
     private Entity selectedEntity;
-    private final int[] cameraInfo = new int[9];
+
     private int cashedScreenSizeY = 0, cashedScreenSizeX = 0;
     private int halfTilesY , halfTilesX , offsetX, offsetY , renderPosStartX , renderPosStartY , tilesToRenderX, tilesToRenderY , endRenderPosX , endRenderPosY;
 
@@ -56,9 +56,9 @@ public class Camera {
                 int posYOnScreen =  (Main.getTileScaled()*(e.getPosition().convertToWorldPosY() - this.getRenderPosStartY()));
                 int posXOnScreen =   (Main.getTileScaled()*(e.getPosition().convertToWorldPosX() - this.getRenderPosStartX()));
 
-                if (e != this.getSelectedEntity()){
-                    posXOnScreen -= this.getOffsetX();
-                    posYOnScreen -= this.getOffsetY();
+                if (e != this.getSelectedEntity()) {
+                    posXOnScreen = (posXOnScreen - this.getOffsetX()) + e.getPosition().offsetX();
+                    posYOnScreen = (posYOnScreen - this.getOffsetY()) + e.getPosition().offsetY();
                 }
 
                 e.draw(g2,posXOnScreen,posYOnScreen);
@@ -75,9 +75,7 @@ public class Camera {
     public Entity getSelectedEntity() {
         return selectedEntity;
     }
-    public int[] getCameraInfo(){
-        return this.cameraInfo;
-    }
+
 
     public int getCashedScreenSizeY() {
         return cashedScreenSizeY;
