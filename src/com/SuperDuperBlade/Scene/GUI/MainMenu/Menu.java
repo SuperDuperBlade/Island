@@ -1,7 +1,6 @@
 package com.SuperDuperBlade.Scene.GUI.MainMenu;
 
 import com.SuperDuperBlade.Main;
-import com.SuperDuperBlade.Scene.GUI.Command;
 import com.SuperDuperBlade.Scene.GUI.Gui;
 import com.SuperDuperBlade.Scene.MainMenu;
 

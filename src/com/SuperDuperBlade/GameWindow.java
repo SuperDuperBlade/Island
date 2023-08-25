@@ -135,6 +135,8 @@ public class GameWindow extends JPanel implements Runnable {
         int times = 0;
         while (mainThread != null) {
 
+
+
             try {
                 double remainingTime = (nextDrawTime - System.nanoTime());
                 remainingTime = remainingTime / 1000000;
@@ -146,14 +148,15 @@ public class GameWindow extends JPanel implements Runnable {
                     times = 0;
                     fps += 1000000000;
                 }
+
                 Thread.sleep((long) remainingTime);
                 update(System.currentTimeMillis() - lastTime);
+
                 repaint();
 
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-
             lastTime = System.currentTimeMillis();
             nextDrawTime += drawInterval;
             times++;

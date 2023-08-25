@@ -23,7 +23,7 @@ public  class KeyManager implements KeyListener {
     public void keyTyped(KeyEvent e) {
             //Gui window hook
         for (Gui g: Main.getWindow().getScence().guis) {
-            g.keyTyped(e);
+            if (g != null) g.keyTyped(e);
         }
 
         char keyCode = e.getKeyChar();
