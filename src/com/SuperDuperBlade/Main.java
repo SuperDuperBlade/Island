@@ -9,7 +9,7 @@ public class Main {
     private static GameWindow gWindow;
     private static String workingDirectory;
 
-    public static void main(String args[]){
+    public static void main(String[] args){
         workingDirectory = args[0];
          JFrame  window = new JFrame();
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

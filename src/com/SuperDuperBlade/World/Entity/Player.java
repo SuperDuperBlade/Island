@@ -34,7 +34,6 @@ public class Player extends Entity{
     @Override
     public void update(double delta) {
         double motion = calculateSpeedDif(delta,movementSpeed);
-
         if (keyManager.keyPressed[KeyEvent.VK_W]) {
             this.position.addToPosY(-motion);
             selectedImage = playerUp;

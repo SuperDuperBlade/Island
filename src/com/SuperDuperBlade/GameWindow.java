@@ -59,15 +59,16 @@ public class GameWindow extends JPanel implements Runnable {
         new Thread(()->{
             startTickThread();
         }).start();
-        startRenderingThread();
+        startMainThread();
 
     }
 
 
-    public void update(double delta) {
+    public double update(double delta) {
         currentScene.update(delta);
         this.screenSizeX = this.getWidth();
         this.screenSizeY = this.getHeight();
+        return System.currentTimeMillis();
     }
 
 
@@ -81,6 +82,7 @@ public class GameWindow extends JPanel implements Runnable {
         if (currentScene !=null)
         currentScene.draw(g2);
         g2.dispose();
+        g.dispose();
     }
 
 
@@ -122,20 +124,15 @@ public class GameWindow extends JPanel implements Runnable {
 
     }
 
-    protected void startRenderingThread() {
+    protected void startMainThread() {
 
 
         double drawInterval = 1000000000 / FPSCAP;
         double nextDrawTime = System.nanoTime() + drawInterval;
-        double lastTime = System.currentTimeMillis();
-
-
-
         double fps = System.nanoTime() + 1000000000;
+        double lastTime = System.nanoTime();
         int times = 0;
         while (mainThread != null) {
-
-
 
             try {
                 double remainingTime = (nextDrawTime - System.nanoTime());
@@ -144,23 +141,23 @@ public class GameWindow extends JPanel implements Runnable {
                     remainingTime = 0;
                 }
                 if (System.nanoTime() >= fps) {
-                    Main.debug("FPS: " + times);
+                    Main.debug("TPS: " + times);
                     times = 0;
                     fps += 1000000000;
                 }
-
                 Thread.sleep((long) remainingTime);
-                update(System.currentTimeMillis() - lastTime);
-
+                update(System.nanoTime()-lastTime);
                 repaint();
 
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            lastTime = System.currentTimeMillis();
+
+            lastTime = System.nanoTime();
             nextDrawTime += drawInterval;
             times++;
         }
+
 
     }
 

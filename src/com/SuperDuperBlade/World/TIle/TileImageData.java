@@ -1,6 +1,7 @@
 package com.SuperDuperBlade.World.TIle;
 
 import com.SuperDuperBlade.Main;
+import com.SuperDuperBlade.Utils.Util;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -16,11 +17,7 @@ public enum TileImageData {
 
 
     TileImageData(String imageLocation){
-        try {
-            this.image =  ImageIO.read(getDeclaringClass().getResourceAsStream(imageLocation)).getScaledInstance(Main.getTileScaled(),Main.getTileScaled(),0);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        this.image = Util.getImageFromSource(imageLocation);
     }
     public Image getImage(){
         return image;

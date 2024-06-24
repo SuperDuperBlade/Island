@@ -56,7 +56,8 @@ public  class Util {
     }
 
     public static   double calculateSpeedDif(double deltaTime, double movementSpeed){
-        return movementSpeed*(deltaTime/1000);
+
+        return (movementSpeed*(deltaTime/1000000000));
     }
 
 }

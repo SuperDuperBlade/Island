@@ -30,12 +30,10 @@ public class World extends Scence {
         entities.add(player);
 
         Random r = new Random();
-        for (int i = 0; i < 10
+        for (int i = 0; i < 0
                 ; i++) {
             entities.add(new NPC(1, 300,2*i,10, 48, 48));
         }
-        entities.add(new NPC(1, 148, 20, 2, 32, 32));
-        entities.add(new NPC(1, 148, 120, 20, 48, 48));
         guis.add(new Command(this));
         guis.add(new Stats(this.player));
         camera = new Camera(player);
@@ -69,8 +67,6 @@ public class World extends Scence {
             for (Gui gui : guis) {
                 gui.draw(g2);
             }
-
-
     }
         @Override
         public void onTick() {
@@ -112,6 +108,6 @@ public class World extends Scence {
             return player;
         }
 
-
+        public int getWorldMetric(){return 1000;}
     }
 

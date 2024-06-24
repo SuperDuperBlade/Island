@@ -39,10 +39,10 @@ public class Camera {
         offsetY = position.offsetY(); //offset on the Y axis
 
 
-        this.renderPosStartX = position.convertToWorldPosX() - halfTilesX;
+        this.renderPosStartX = position.convertToWorldPosX() - halfTilesX ;
         this.renderPosStartY = position.convertToWorldPosY() - halfTilesY;
 
-        this.tilesToRenderX = (halfTilesX*2)+3;
+        this.tilesToRenderX = (halfTilesX*2)+2;
         this.tilesToRenderY = (halfTilesY*2)+3;
 
         this.endRenderPosX = renderPosStartX + tilesToRenderX;

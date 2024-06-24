@@ -27,6 +27,8 @@ public abstract class Entity {
     public abstract void draw(Graphics2D g2, int posX,int posY);
     public abstract void  onTick();
 
+
+
     public int getMovementSpeed() {
         return movementSpeed;
     }
